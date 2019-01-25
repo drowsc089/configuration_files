@@ -14,7 +14,7 @@
  * This is needed for cookie based authentication to encrypt password in
  * cookie. Needs to be 32 chars long.
  */
-$cfg['blowfish_secret'] = 'B-o_4.:I9ni39"+![yy5_5jf2gn1]yfl'; /* YOU MUST FILL IN THIS FOR COOKIE AUTH! */
+$cfg['blowfish_secret'] = ''; /* YOU MUST FILL IN THIS FOR COOKIE AUTH! */
 
 /**
  * Servers configuration
@@ -23,216 +23,42 @@ $i = 0;
 
 
 /**
- * aliyun-mdb
+ * database 1
  */
 $i++;
 /* Authentication type */
 $cfg['Servers'][$i]['auth_type'] = 'cookie';
 /* Server parameters */
-$cfg['Servers'][$i]['host'] = 'mysql.bondwebapp.com';
-$cfg['Servers'][$i]['port'] = '5104';
+$cfg['Servers'][$i]['host'] = '';
+$cfg['Servers'][$i]['port'] = '';
 $cfg['Servers'][$i]['compress'] = false;
 $cfg['Servers'][$i]['AllowNoPassword'] = false;
-$cfg['Servers'][$i]['verbose'] = '原阿里云主库';
+$cfg['Servers'][$i]['verbose'] = '';
 
 /**
- * aliyun-sdb
+ * database 2
  */
 $i++;
 /* Authentication type */
 $cfg['Servers'][$i]['auth_type'] = 'cookie';
 /* Server parameters */
-$cfg['Servers'][$i]['host'] = '10.26.223.80';
-$cfg['Servers'][$i]['port'] = '5104';
+$cfg['Servers'][$i]['host'] = '';
+$cfg['Servers'][$i]['port'] = '';
 $cfg['Servers'][$i]['compress'] = false;
 $cfg['Servers'][$i]['AllowNoPassword'] = false;
-$cfg['Servers'][$i]['verbose'] = '原阿里云从库';
-
-
-/**
- * aliyun-web
- */
-$i++;
-/* Authentication type */
-$cfg['Servers'][$i]['auth_type'] = 'cookie';
-/* Server parameters */
-$cfg['Servers'][$i]['host'] = '127.0.0.1';
-$cfg['Servers'][$i]['port'] = '3306';
-$cfg['Servers'][$i]['compress'] = false;
-$cfg['Servers'][$i]['AllowNoPassword'] = false;
-$cfg['Servers'][$i]['verbose'] = '阿里云web&&官网活动等';
-
-/**
- * aliyun-jwmdb
- */
-$i++;
-/* Authentication type */
-$cfg['Servers'][$i]['auth_type'] = 'cookie';
-/* Server parameters */
-$cfg['Servers'][$i]['host'] = 'jwmdb.bondwebapp.com';
-$cfg['Servers'][$i]['port'] = '5107';
-$cfg['Servers'][$i]['compress'] = false;
-$cfg['Servers'][$i]['AllowNoPassword'] = false;
-$cfg['Servers'][$i]['verbose'] = '教务系统主库';
-
-/**
- * aliyun-jwsdb
- */
-$i++;
-/* Authentication type */
-$cfg['Servers'][$i]['auth_type'] = 'cookie';
-/* Server parameters */
-$cfg['Servers'][$i]['host'] = 'jwsdb.bondwebapp.com';
-$cfg['Servers'][$i]['port'] = '5107';
-$cfg['Servers'][$i]['compress'] = false;
-$cfg['Servers'][$i]['AllowNoPassword'] = false;
-$cfg['Servers'][$i]['verbose'] = '教务系统从库';
-
-/**
- * aliyun-onemdb && dubbo-framework-project && jsapi
- */
-$i++;
-/* Authentication type */
-$cfg['Servers'][$i]['auth_type'] = 'cookie';
-/* Server parameters */
-$cfg['Servers'][$i]['host'] = '10.46.131.147';
-$cfg['Servers'][$i]['port'] = '5304';
-$cfg['Servers'][$i]['compress'] = false;
-$cfg['Servers'][$i]['AllowNoPassword'] = false;
-$cfg['Servers'][$i]['verbose'] = '邦德一对一&&dubbo分布式框架服务&&竞赛项目主库';
-
-
-/**
- * aliyun-onesdb && dubbo-framework-project && jsapi
- */
-$i++;
-/* Authentication type */
-$cfg['Servers'][$i]['auth_type'] = 'cookie';
-/* Server parameters */
-$cfg['Servers'][$i]['host'] = '10.26.223.80';
-$cfg['Servers'][$i]['port'] = '5304';
-$cfg['Servers'][$i]['compress'] = false;
-$cfg['Servers'][$i]['AllowNoPassword'] = false;
-$cfg['Servers'][$i]['verbose'] = '邦德一对一&&dubbo分布式框架服务&&竞赛项目从库';
-
-/**
- * aliyun-boersi
- */
-$i++;
-/* Authentication type */
-$cfg['Servers'][$i]['auth_type'] = 'cookie';
-/* Server parameters */
-$cfg['Servers'][$i]['host'] = '120.78.145.209';
-$cfg['Servers'][$i]['port'] = '3306';
-$cfg['Servers'][$i]['compress'] = false;
-$cfg['Servers'][$i]['AllowNoPassword'] = false;
-$cfg['Servers'][$i]['verbose'] = '博尔思阿里云';
-
-
-/**
- * aliyun-huizhouhnjw
- */
-$i++;
-/* Authentication type */
-$cfg['Servers'][$i]['auth_type'] = 'cookie';
-/* Server parameters */
-$cfg['Servers'][$i]['host'] = '172.18.146.214';
-$cfg['Servers'][$i]['port'] = '3306';
-$cfg['Servers'][$i]['compress'] = false;
-$cfg['Servers'][$i]['AllowNoPassword'] = false;
-$cfg['Servers'][$i]['verbose'] = '惠州华纳教务系统阿里云';
-
-/**
- * aliyun-jiangsufenxiao
- */
-$i++;
-/* Authentication type */
-$cfg['Servers'][$i]['auth_type'] = 'cookie';
-/* Server parameters */
-$cfg['Servers'][$i]['host'] = '172.18.26.64';
-$cfg['Servers'][$i]['port'] = '3306';
-$cfg['Servers'][$i]['compress'] = false;
-$cfg['Servers'][$i]['AllowNoPassword'] = false;
-$cfg['Servers'][$i]['verbose'] = '江苏分校阿里云';
-
-/**
- * aliyun-wangxiao1mdb
- */
-$i++;
-/* Authentication type */
-$cfg['Servers'][$i]['auth_type'] = 'cookie';
-/* Server parameters */
-$cfg['Servers'][$i]['host'] = 'mysql.bondwebapp.com';
-$cfg['Servers'][$i]['port'] = '5105';
-$cfg['Servers'][$i]['compress'] = false;
-$cfg['Servers'][$i]['AllowNoPassword'] = false;
-$cfg['Servers'][$i]['verbose'] = '网校实例5105主库阿里云';
-
-
-/**
- * aliyun-wangxiao1sdb
- */
-$i++;
-/* Authentication type */
-$cfg['Servers'][$i]['auth_type'] = 'cookie';
-/* Server parameters */
-$cfg['Servers'][$i]['host'] = '10.26.223.80';
-$cfg['Servers'][$i]['port'] = '5105';
-$cfg['Servers'][$i]['compress'] = false;
-$cfg['Servers'][$i]['AllowNoPassword'] = false;
-$cfg['Servers'][$i]['verbose'] = '网校实例5105从库阿里云';
-
-
-/**
- * aliyun-wangxiao2mdb
- */
-$i++;
-/* Authentication type */
-$cfg['Servers'][$i]['auth_type'] = 'cookie';
-/* Server parameters */
-$cfg['Servers'][$i]['host'] = 'mysql.bondwebapp.com';
-$cfg['Servers'][$i]['port'] = '5106';
-$cfg['Servers'][$i]['compress'] = false;
-$cfg['Servers'][$i]['AllowNoPassword'] = false;
-$cfg['Servers'][$i]['verbose'] = '网校实例5106主库阿里云';
-
-
-/**
- * aliyun-wangxiao2sdb
- */
-$i++;
-/* Authentication type */
-$cfg['Servers'][$i]['auth_type'] = 'cookie';
-/* Server parameters */
-$cfg['Servers'][$i]['host'] = '10.26.223.80';
-$cfg['Servers'][$i]['port'] = '5106';
-$cfg['Servers'][$i]['compress'] = false;
-$cfg['Servers'][$i]['AllowNoPassword'] = false;
-$cfg['Servers'][$i]['verbose'] = '网校实例5106从库阿里云';
-
-/**
- * aliyun-zhuoyun
- */
-$i++;
-/* Authentication type */
-$cfg['Servers'][$i]['auth_type'] = 'cookie';
-/* Server parameters */
-$cfg['Servers'][$i]['host'] = '120.79.172.67';
-$cfg['Servers'][$i]['port'] = '3306';
-$cfg['Servers'][$i]['compress'] = false;
-$cfg['Servers'][$i]['AllowNoPassword'] = false;
-$cfg['Servers'][$i]['verbose'] = '倬云教育阿里云';
+$cfg['Servers'][$i]['verbose'] = '';
 
 
 /**
  * phpMyAdmin configuration storage settings.
+ * 存储phpMyAdmin配置信息的数据库
  */
 
 /* User used to manipulate with storage */
-$cfg['Servers'][$i]['controlhost'] = 'mysql.bondwebapp.com';
-$cfg['Servers'][$i]['controlport'] = '5104';
-$cfg['Servers'][$i]['controluser'] = 'phpmyadmin';
-$cfg['Servers'][$i]['controlpass'] = 't-ei@6=m5Yq(8!V5';
+$cfg['Servers'][$i]['controlhost'] = '';
+$cfg['Servers'][$i]['controlport'] = '';
+$cfg['Servers'][$i]['controluser'] = '';
+$cfg['Servers'][$i]['controlpass'] = '';
 
 /* Storage database and tables */
 $cfg['Servers'][$i]['pmadb'] = 'phpmyadmin';
