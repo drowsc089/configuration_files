@@ -1,0 +1,161 @@
+# For advice on how to change settings please see
+# http://dev.mysql.com/doc/refman/5.6/en/server-configuration-defaults.html
+[client]
+port = 5107
+socket = /data/usr/mysql-5.6.22/mysql.sock
+
+
+[mysqld]
+
+# Remove leading # and set to the amount of RAM for the most important data
+# cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.
+# innodb_buffer_pool_size = 128M
+
+# Remove leading # to turn on a very important data integrity option: logging
+# changes to the binary log between backups.
+# log_bin
+
+# These are commonly set, remove the # and set as required.
+# bind-address = 10.46.131.147
+
+basedir = /data/usr/mysql-5.6.22
+datadir = /data/usr/mysql-5.6.22/data
+port = 5107
+server_id = 194
+socket = /data/usr/mysql-5.6.22/mysql.sock
+pid-file = /data/usr/mysql-5.6.22/mysql.pid
+expire_logs_days = 7
+#skip-grant-table
+
+slave-skip-errors = all
+
+skip-name-resolve
+skip-external-locking
+
+
+key_buffer_size = 32M
+query_cache_size = 16M
+query_cache_limit = 256M
+tmp_table_size = 64M
+
+max_heap_table_size = 256M
+tmp_table_size = 256M
+
+
+###Read-Only,can't modifi when server is running
+#innodb_buffer_pool_size = 1024M
+innodb_buffer_pool_size = 4096M
+##### innodb_log_file_size should be no more than 25% of innodb_buffer_pool_size ,and the maxium is 256M  ######
+innodb_log_file_size = 256M
+innodb_additional_mem_pool_size = 16M
+innodb_log_buffer_size = 8M
+tmpdir=/data/usr/mysql-5.6.22/data/temp
+query_cache_type = 1
+###
+
+max_connections = 500
+
+sort_buffer_size = 2M
+read_buffer_size = 2M
+read_rnd_buffer_size = 263K
+join_buffer_size = 132K
+###Read-Only
+thread_stack = 201K
+###
+binlog_cache_size = 4M
+log_bin_trust_function_creators = 1;
+
+
+
+max_allowed_packet = 64M
+table_open_cache = 2048
+net_buffer_length = 1M
+myisam_sort_buffer_size = 64M
+max_length_for_sort_data =4096
+event_scheduler = 1
+thread_cache_size = 64
+max_connect_errors = 200
+slow_query_log=on
+long_query_time=6
+slow_query_log_file=/data/usr/mysql-5.6.22/logs/slowlogs/slow.log
+thread_cache_size = 64
+thread_concurrency = 8
+binlog-format=ROW
+log-slave-updates=true
+gtid-mode=on
+enforce-gtid-consistency=true
+master-info-repository=TABLE
+relay-log-info-repository=TABLE
+sync-master-info=1
+slave-parallel-workers=2
+binlog-checksum=CRC32
+master-verify-checksum=1
+slave-sql-verify-checksum=1
+binlog-rows-query-log_events=1
+
+# These support master - slave replication  
+log-bin = /data/usr/mysql-5.6.22/logs/binlogs/bin-log-mysqld 
+log-bin-index = /data/usr/mysql-5.6.22/logs/binlogs/bin-log-mysqld.index  
+#binlog-do-db =  # Leave this blank if you want to control it on slave
+#binlog-do-db = activityexam,bond-good-teacher,bond-householder-community,bond-sso,bond-tiku,bond_administration,bond_edu,bond_mail,bond_tls,bond_webauth,payment
+#binlog-do-db = activityexam
+#binlog-do-db = bond-good-teacher
+#binlog-do-db = bond-householder-community
+#binlog-do-db = bond-sso
+#binlog-do-db = bond-tiku
+#binlog-do-db = bond_administration
+#binlog-do-db = bond_edu
+#binlog-do-db = bond_mail
+#binlog-do-db = bond_tls
+#binlog-do-db = bond_webauth
+#binlog-do-db = payment
+#binlog-do-db = bond_red_envelope
+#binlog-do-db = bond_vod
+#binlog-ignore-db = mysql 
+#binlog-ignore-db = information_schema 
+#binlog-ignore-db = querylog
+#binlog-ignore-db = performance_schema 
+max_binlog_size = 1024M
+# Relay log settings
+#relay-log = /opt/mysql3307/log/relay-log-mysqld
+#relay-log-index = /opt/mysql3307/log/relay-log-mysqld.index
+#relay-log-space-limit = 4G
+
+# Slow query log settings
+#log-slow-queries = /opt/mysql3307/log/slow-log-mysqld
+#long_query_time = 2
+#log-queries-not-using-indexes
+
+[mysqldump]
+quick
+max_allowed_packet = 16M
+
+[mysql]
+no-auto-rehash
+
+[myisamchk]
+key_buffer_size = 16M
+sort_buffer_size = 2M
+read_buffer_size = 2M
+write_buffer_size = 64M
+
+[mysqlhotcopy]
+interactive-timeout
+# Remove leading # to set options mainly useful for reporting servers.
+# The server defaults are faster for transactions and fast SELECTs.
+# Adjust sizes as needed, experiment to find the optimal values.
+# join_buffer_size = 128M
+# sort_buffer_size = 2M
+# read_rnd_buffer_size = 2M 
+
+[mysql.server]  
+user = mysql  
+                                                                                                      
+[mysqld_safe]  
+log-error = /data/usr/mysql-5.6.22/logs/mysql-error.log  
+pid-file = /data/usr/mysql-5.6.22/mysql.pid
+#open-files-limit = 8192
+
+
+
+sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES 
