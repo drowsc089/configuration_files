@@ -1,1 +1,1 @@
-#serval kinds of configuration files of application
+#serval configuration files of application
