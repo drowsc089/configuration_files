@@ -16,7 +16,7 @@ socket = /var/run/mysql/mysql5107.sock
 # log_bin
 
 # These are commonly set, remove the # and set as required.
-# bind-address = 10.46.131.147
+# bind-address = 10.46.131.x
 
 basedir = /data/usr/mysql
 datadir = /data/usr/mysql-cluster/mysql004_jw/data
@@ -44,7 +44,6 @@ tmp_table_size = 256M
 
 
 ###Read-Only,can't modifi when server is running
-#innodb_buffer_pool_size = 1024M
 innodb_buffer_pool_size = 4096M
 ##### innodb_log_file_size should be no more than 25% of innodb_buffer_pool_size ,and the maxium is 256M  ######
 innodb_log_file_size = 256M
@@ -65,7 +64,6 @@ thread_stack = 201K
 ###
 binlog_cache_size = 4M
 log_bin_trust_function_creators = 1;
-
 
 
 max_allowed_packet = 64M
@@ -98,8 +96,6 @@ sync_binlog = 1
 innodb_flush_log_at_trx_commit = 2
 
 
-
-
 replicate-wild-ignore-table = mysql.%
 replicate-wild-ignore-table = temp.%
 replicate-wild-ignore-table = test.%
@@ -112,25 +108,7 @@ replicate-wild-ignore-table = phpmyadmin.%
 # These support master - slave replication  
 log-bin = /data/usr/mysql-cluster/mysql004_jw/logs/binlogs/bin-log-mysqld 
 log-bin-index = /data/usr/mysql-cluster/mysql004_jw/logs/binlogs/bin-log-mysqld.index  
-#binlog-do-db =  # Leave this blank if you want to control it on slave
-#binlog-do-db = activityexam,bond-good-teacher,bond-householder-community,bond-sso,bond-tiku,bond_administration,bond_edu,bond_mail,bond_tls,bond_webauth,payment
-#binlog-do-db = activityexam
-#binlog-do-db = bond-good-teacher
-#binlog-do-db = bond-householder-community
-#binlog-do-db = bond-sso
-#binlog-do-db = bond-tiku
-#binlog-do-db = bond_administration
-#binlog-do-db = bond_edu
-#binlog-do-db = bond_mail
-#binlog-do-db = bond_tls
-#binlog-do-db = bond_webauth
-#binlog-do-db = payment
-#binlog-do-db = bond_red_envelope
-#binlog-do-db = bond_vod
-#binlog-ignore-db = mysql 
-#binlog-ignore-db = information_schema 
-#binlog-ignore-db = querylog
-#binlog-ignore-db = performance_schema 
+ 
 max_binlog_size = 1024M
 # Relay log settings
 relay-log = /data/usr/mysql-cluster/mysql004_jw/logs/relaylogs/relay-log-mysqld
