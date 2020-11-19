@@ -1,0 +1,13 @@
+i18n.locale: "zh-CN"
+server.port: 5601
+server.host: "127.0.0.1"
+#server.defaultRoute: "/app/kibana"
+server.name: "ELKkibana01"
+elasticsearch.hosts: ["http://10.100.108.69:9200","http://10.100.108.70:9200","http://10.100.108.71:9200"]
+elasticsearch.preserveHost: true
+kibana.index: ".kibana"
+pid.file: /usr/local/elk/kibana/run/kibana.pid
+logging.verbose: true
+#指定刚使用elasticsearch生成的kibana连接的用户名及密码
+elasticsearch.username: "kibana"            
+elasticsearch.password: "BVROY6QFxrtGiWaWUwv7"

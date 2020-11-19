@@ -1,0 +1,3 @@
+ANY [\s\S]*
+APPTIMESTAMP 20%{YEAR}-%{MONTHNUM}-%{MONTHDAY} %{HOUR}:?%{MINUTE}(?::?%{SECOND})
+JAVAAPPLOG %{ANY:text_format}%{APPTIMESTAMP:timestamp}\^\^%{ANY:threadname}\^\^%{ANY:loglevel}\^\^%{ANY:javaclass}\^\^%{ANY:information}
