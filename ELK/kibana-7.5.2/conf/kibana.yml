@@ -1,21 +1,42 @@
+#Kibana从6.7.0开始，可以通过修改kibana.yml中的配置项i18n.locale: "zh-CN"，然后重启Kibana完成汉化
+ 
 i18n.locale: "zh-CN"
+ 
+#默认值: 5601 Kibana 由后端服务器提供服务，该配置指定使用的端口号。
 server.port: 5601
+ 
+#默认值: "localhost" 指定后端服务器的主机地址。
 server.host: "192.168.193.154"
-#server.defaultRoute: "/app/kibana"
+ 
+#默认值: "/app/kibana" Kibana 的默认路径，该配置项可改变 Kibana 的登录页面。
+server.defaultRoute: "/app/kibana"
+ 
+#默认值: "您的主机名" Kibana 实例对外展示的名称。
 server.name: "HDPROkibana01"
+ 
+#所连接的elasticsearch集群地址
 elasticsearch.hosts: ["http://192.168.193.154:9200","http://192.168.193.155:9200","http://192.168.193.156:9200"]
+ 
+#默认值: true 该设置项的值为 true 时，Kibana 使用 server.host 设定的主机名，该设置项的值为 false 时，Kibana 使用主机的主机名来连接 Kibana 实例。
 elasticsearch.preserveHost: true
+ 
+#默认值: ".kibana" Kibana 使用 Elasticsearch 中的索引来存储保存的检索，可视化控件以及仪表板。如果没有索引，Kibana 会创建一个新的索引。
 kibana.index: ".kibana"
+ 
+#指定 Kibana 的进程 ID 文件的路径。
 pid.file: /data/kibana/kibana.pid
-#日志位置
+#默认值: stdout 指定 Kibana 日志输出的文件。
 logging.dest: /data/ELK/kibana_data/logs/kibana.log
-#true时禁止所有日志输出
+ 
+#默认值: false 该值设为 true 时，禁止所有日志输出。
 logging.silent: false
-#true时日志记下所有事件
+#默认值: false 该值设为 true 时，记下所有事件包括系统使用信息和所有请求的日志。
 logging.verbose: true
-#true时日志只显示错误信息
+#默认值: false 该值设为 true 时，禁止除错误信息除外的所有日志输出。
 logging.quiet: false
+ 
+#开启xpack监控
 xpack.monitoring.enabled: true
-#指定刚使用elasticsearch生成的kibana连接的用户名及密码
+#使用密文的方式连接elasticsearch，详见下一步骤的介绍
 xpack.reporting.encryptionKey: "a_random_string"
 xpack.security.encryptionKey: "something_at_least_32_characters"
