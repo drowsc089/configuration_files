@@ -1,0 +1,21 @@
+[Unit]
+Description=kibana.service
+After=network.target
+ 
+[Service]
+Type=forking
+#使用这个账号操作
+User=elk
+Group=elk
+LimitCORE=infinity
+LimitMEMLOCK=infinity
+LimitNOFILE=65536
+LimitNPROC=65536
+ExecStart=/data/kibana/bin/service.sh start
+ExecReload=/data/kibana/bin/service.sh restart
+ExecStop=/data/kibana/bin/service.sh stop
+KillMode=process
+Restart=always
+ 
+[Install]
+WantedBy=multi-user.target

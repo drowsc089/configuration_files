@@ -1,0 +1,26 @@
+[Unit]
+Description=kafka.service
+After=network.target
+#Requires=zookeeper.service
+ 
+[Service]
+Type=forking
+#使用这个账号操作
+User=elk
+Group=elk
+LimitCORE=infinity
+LimitMEMLOCK=infinity
+LimitNOFILE=65536
+LimitNPROC=65536
+ExecStart=/data/kafka/bin/kafka-server-start.sh -daemon /data/kafka/config/server.properties
+ExecReload=/data/kafka/bin/kafka-server-stop.sh && /data/kafka/bin/kafka-server-start.sh -daemon /data/kafka/config/server.properties
+ExecStop=/data/kafka/bin/kafka-server-stop.sh
+#KillMode=process
+#Restart=always
+#StartLimitBurst=2
+#StartLimitInterval=600
+#StartLimitInterval=30
+
+ 
+[Install]
+WantedBy=multi-user.target

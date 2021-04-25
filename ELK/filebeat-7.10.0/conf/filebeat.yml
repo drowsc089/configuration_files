@@ -1,0 +1,136 @@
+#本地filebeat安装路径
+path.home: /usr/share/filebeat
+#配置文件目录
+path.config: /etc/filebeat
+#filebeat自身数据目录
+path.data: /data/filebeat/data
+#filebeat自身日志目录
+path.logs: /data/filebeat/logs
+
+#filebeat自身输出日志的配置
+#日志级别为info
+logging.level: info
+#日志记录的方式为文件
+logging.to_files: true
+
+logging.files:
+#日志所在目录
+  path: /data/filebeat/logs
+  #日志命名
+  name: filebeat
+  #最大保留文件数
+  keepfiles: 7
+  #linux下日志文件权限
+  permissions: 0644
+  #触发日志滚动的日志大小值，单位为字节byte
+  rotateeverbytes: 10485760 #(10MB)
+#registry文件目录，默认根目录为数据目录
+filebeat.registry.path: registry   #%{path.data}
+#linux下registry目录内文件权限
+filebeat.registry.file_permissions: 0600
+#控制registry里的内容何时写入到文件中
+filebeat.registry.flush: 60s
+
+#filebeat所抓取日志的配置,此处使用了多行匹配插件multiline,具体配置项作用可自行查阅资料
+filebeat.inputs:
+   - type: log
+     enabled: true
+     paths:
+       - /data/logs/idr-dfs/idr-dfs*log
+     multiline.type: pattern
+     multiline.pattern: '^[\s\S]*\d{4}-\d{1,2}-\d{1,2}[\s\S]*\[[\s\S]*\]'
+     multiline.negate: true
+     multiline.match: after
+     multiline.max_lines: 500
+     multiline.timeout: 10s
+     exclude_lines: ['\^\^DEBUG']
+     tags: ["idr-dfs"]
+     fields_under_root: true
+     fields:
+       host_ip: 192.168.99.36
+   - type: log
+     enabled: true
+     paths:
+       - /data/logs/idr-eureka/idr-eureka*log
+     multiline.type: pattern
+     multiline.pattern: '^[\s\S]*\d{4}-\d{1,2}-\d{1,2}[\s\S]*\[[\s\S]*\]'
+     multiline.negate: true
+     multiline.match: after
+     multiline.max_lines: 500
+     multiline.timeout: 10s
+     exclude_lines: ['\^\^DEBUG']
+     tags: ["idr-eureka"]
+     fields_under_root: true
+     fields:
+       host_ip: 192.168.99.36
+   - type: log
+     enabled: true
+     paths:
+       - /data/logs/idr-sign/idr-sign*log
+     multiline.type: pattern
+     multiline.pattern: '^[\s\S]*\d{4}-\d{1,2}-\d{1,2}[\s\S]*\[[\s\S]*\]'
+     multiline.negate: true
+     multiline.match: after
+     multiline.max_lines: 500
+     multiline.timeout: 10s
+     exclude_lines: ['\^\^DEBUG']
+     tags: ["idr-sign"]
+     fields_under_root: true
+     fields:
+       host_ip: 192.168.99.36
+   - type: log
+     enabled: true
+     paths:
+       - /data/logs/idr-record/idr-record*log
+     multiline.type: pattern
+     multiline.pattern: '^[\s\S]*\d{4}-\d{1,2}-\d{1,2}[\s\S]*\[[\s\S]*\]'
+     multiline.negate: true
+     multiline.match: after
+     multiline.max_lines: 500
+     multiline.timeout: 10s
+     exclude_lines: ['\^\^DEBUG']
+     tags: ["idr-record"]
+     fields_under_root: true
+     fields:
+       host_ip: 192.168.99.36
+   - type: log
+     enabled: true
+     paths:
+       - /data/logs/idr-zuul/idr-zuul*log
+     multiline.type: pattern
+     multiline.pattern: '^[\s\S]*\d{4}-\d{1,2}-\d{1,2}[\s\S]*\[[\s\S]*\]'
+     multiline.negate: true
+     multiline.match: after
+     multiline.max_lines: 500
+     multiline.timeout: 10s
+     exclude_lines: ['\^\^DEBUG']
+     tags: ["idr-zuul"]
+     fields_under_root: true
+     fields:
+       host_ip: 192.168.99.36
+
+output.kafka:
+     enabled: true
+     hosts: ["192.168.145.109:9092","192.168.145.110:9092","192.168.145.111:9092"]
+     topics:
+       - topic: "idr-dfs"
+         when.contains:
+           tags: "idr-dfs"
+       - topic: "idr-eureka"
+         when.contains:
+           tags: "idr-eureka"
+       - topic: "idr-sign"
+         when.contains:
+           tags: "idr-sign"
+       - topic: "idr-record"
+         when.contains:
+           tags: "idr-record"
+       - topic: "idr-zuul"
+         when.contains:
+           tags: "idr-zuul"
+     required_acks: 1
+     compression: gzip
+     max_message_bytes: 104857600 # 100MB
+       #- topic: "idr-dfs"
+         #when.contains:
+           #tags: "idr-dfs"

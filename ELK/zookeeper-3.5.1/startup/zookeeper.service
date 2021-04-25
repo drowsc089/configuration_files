@@ -1,0 +1,22 @@
+[Unit]
+Description=zookeeper.service
+After=network.target
+Before=kafka.service
+ 
+[Service]
+Type=forking
+#使用这个账号操作
+User=elk
+Group=elk
+LimitCORE=infinity
+LimitMEMLOCK=infinity
+LimitNOFILE=65536
+LimitNPROC=65536
+ExecStart=/data/zookeeper/bin/zkServer.sh start
+ExecReload=/data/zookeeper/bin/zkServer.sh restart
+ExecStop=/data/zookeeper/bin/zkServer.sh stop
+#KillMode=process
+#Restart=always
+ 
+[Install]
+WantedBy=multi-user.target

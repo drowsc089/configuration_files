@@ -1,0 +1,17 @@
+[Unit]
+Description=elasticsearch.service
+After=network.target
+ 
+[Service]
+Type=forking
+#使用这个账号操作
+User=elk
+Group=elk
+LimitCORE=infinity
+LimitMEMLOCK=infinity
+LimitNOFILE=65536
+LimitNPROC=65536
+ExecStart=/data/elasticsearch/bin/elasticsearch -d
+ 
+[Install]
+WantedBy=multi-user.target
