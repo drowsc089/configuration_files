@@ -4,11 +4,11 @@ pipeline.batch.size: 10000
  
 #发送延时
  
-pipeline.batch.delay: 10
+pipeline.batch.delay: 5
  
-#pipeline线程数，官方建议是等于CPU内核数
+#pipeline线程数，官方建议是等于CPU内核数，实际可用设置为CPU内核数的2-3倍
  
-pipeline.workers: 6
+pipeline.workers: 24
  
 #监视配置文件的改变，并且当配置文件被修改以后自动重新加载配置文件
  
