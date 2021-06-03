@@ -130,7 +130,7 @@ output.kafka:
            tags: "idr-zuul"
      required_acks: 1
      compression: gzip
-     max_message_bytes: 104857600 # 100MB
+     max_message_bytes: 10485760 # 10MB
        #- topic: "idr-dfs"
          #when.contains:
            #tags: "idr-dfs"
