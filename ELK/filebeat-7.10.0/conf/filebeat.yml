@@ -43,7 +43,7 @@ filebeat.inputs:
      multiline.match: after
      multiline.max_lines: 500
      multiline.timeout: 10s
-     exclude_lines: ['\^\^DEBUG']
+     exclude_lines: ['DEBUG']
      tags: ["idr-dfs"]
      fields_under_root: true
      fields:
@@ -58,7 +58,7 @@ filebeat.inputs:
      multiline.match: after
      multiline.max_lines: 500
      multiline.timeout: 10s
-     exclude_lines: ['\^\^DEBUG']
+     exclude_lines: ['DEBUG']
      tags: ["idr-eureka"]
      fields_under_root: true
      fields:
@@ -73,7 +73,7 @@ filebeat.inputs:
      multiline.match: after
      multiline.max_lines: 500
      multiline.timeout: 10s
-     exclude_lines: ['\^\^DEBUG']
+     exclude_lines: ['DEBUG']
      tags: ["idr-sign"]
      fields_under_root: true
      fields:
@@ -88,7 +88,7 @@ filebeat.inputs:
      multiline.match: after
      multiline.max_lines: 500
      multiline.timeout: 10s
-     exclude_lines: ['\^\^DEBUG']
+     exclude_lines: ['DEBUG']
      tags: ["idr-record"]
      fields_under_root: true
      fields:
@@ -103,7 +103,7 @@ filebeat.inputs:
      multiline.match: after
      multiline.max_lines: 500
      multiline.timeout: 10s
-     exclude_lines: ['\^\^DEBUG']
+     exclude_lines: ['DEBUG']
      tags: ["idr-zuul"]
      fields_under_root: true
      fields:
