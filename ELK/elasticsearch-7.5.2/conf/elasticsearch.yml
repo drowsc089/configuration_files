@@ -1,117 +1,126 @@
 #elasticsearch集群名称
+cluster.name: test-skywalking-elastic
 
-cluster.name: HD_ES_cluster1
+##当前节点名称
+node.name: tsw-es-node1
 
-#当前节点名称
-node.name: ELKelasticsearch01
-
-#表示节点是否具有成为主节点的资格
+##表示节点是否具有成为主节点的资格
 node.master: true
 
-#表示节点是否存储数据
+##表示节点是否存储数据
 node.data: true
 
-#ES是搜索引擎，会创建文档，建立索引，此路径是索引的存放目录，如果我们的日志数据较为庞大，那么索引所占用的磁盘空间也是不可小觑的
-#这个路径建议是专门的存储系统，如果不是存储系统，最好也要有冗余能力的磁盘，此目录还要对elasticsearch的运行用户有写入权限
-#path可以指定多个存储位置，分散存储，有助于性能提升，以至于怎么分散存储请看详解https://www.dockerc.com/elk-theory-elasticsearch/
-path.data: /data/ELK/elasticsearch_data/data 
+##表示节点是否具有预处理节点的资格
+node.ingest: true
 
-#日志目录
-path.logs: /data/ELK/elasticsearch_data/logs 
+##ES是搜索引擎，会创建文档，建立索引，此路径是索引的存放目录，如果我们的日志数据较为庞大，那么索引所占用的磁盘空间也是不可小觑的
+##这个路径建议是专门的存储系统，如果不是存储系统，最好也要有冗余能力的磁盘，此目录还要对elasticsearch的运行用户有写入权限
+##path可以指定多个存储位置，分散存储，有助于性能提升，以至于怎么分散存储请看详解https://www.dockerc.com/elk-theory-elasticsearch/
+path.data: /data/elasticsearch
 
-#锁定物理内存地址，防止es内存被交换出去，也就是避免es使用swap交换分区，频繁的交换，会导致IOPS变高
+##日志目录
+path.logs: /var/log/elasticsearch
+ 
+##锁定物理内存地址，防止es内存被交换出去，也就是避免es使用swap交换分区，频繁的交换，会导致IOPS变高
 bootstrap.memory_lock: true
 
-#当前节点的IP地址
-network.host: 192.168.193.154
+##当前节点的IP地址
+network.host: 20.20.150.14
 
-#开启或关闭 TCP 无延迟设置。默认值为 true
+##开启或关闭 TCP 无延迟设置。默认值为 true
 network.tcp.no_delay: true
 
-#开启或关闭 TCP 长连接，默认值为 true
+##开启或关闭 TCP 长连接，默认值为 true
 network.tcp.keep_alive: true
 
-#一个地址是否可以被重用。在非 windows 机子上默认值为 true
+##一个地址是否可以被重用。在非 windows 机子上默认值为 true
 network.tcp.reuse_address: true
 
-#发送缓冲区大小（以size unit指定）。没有默认值
-network.tcp.send_buffer_size: 256mb
+##发送缓冲区大小（以size unit指定）。没有默认值
+network.tcp.send_buffer_size: 64mb
 
-#接收缓冲区大小（以size unit指定）。没有默认值。
-network.tcp.receive_buffer_size: 256mb
+##接收缓冲区大小（以size unit指定）。没有默认值。
+network.tcp.receive_buffer_size: 64mb
 
-#节点间通信端口。接收单值或者一个范围。如果指定一个范围，该节点将会绑定范围的第一个可用顶点。默认值9300-9400
+##节点间通信端口。接收单值或者一个范围。如果指定一个范围，该节点将会绑定范围的第一个可用顶点。默认值9300-9400
 transport.tcp.port: 9300
 
-#设置是否压缩tcp传输时的数据，默认为false，不压缩
+##设置是否压缩tcp传输时的数据，默认为false，不压缩
 transport.tcp.compress: true
 
-#设置内容的最大容量，默认100mb
+##设置内容的最大容量，默认100mb
 http.max_content_length: 200mb
 
-#是否支持跨域，默认为false
+##是否支持跨域，默认为false
 http.cors.enabled: true
 
-#当设置允许跨域，默认为*,表示支持所有域名，如果我们只是允许某些网站能访问，那么可以使用正则表达式。比如只允许本地地址。 /https?:\/\/localhost(:[0-9]+)?/
+##当设置允许跨域，默认为*,表示支持所有域名，如果我们只是允许某些网站能访问，那么可以使用正则表达式。比如只允许本地地址。 /https?:\/\/localhost(:[0-9]+)?/
 http.cors.allow-origin: "*"
 
-#是否返回设置的跨域Access-Control-Allow-Credentials头，如果设置为true,那么会返回给客户端
+##是否返回设置的跨域Access-Control-Allow-Credentials头，如果设置为true,那么会返回给客户端
 http.cors.allow-credentials: true
 
-#允许跨域的请求方式，默认OPTIONS,HEAD,GET,POST,PUT,DELETE
+##允许跨域的请求方式，默认OPTIONS,HEAD,GET,POST,PUT,DELETE
 http.cors.allow-methods: OPTIONS, HEAD, GET, POST, PUT, DELETE
 
-#跨域允许设置的头信息，默认为X-Requested-With,Content-Type,Content-Length
+##跨域允许设置的头信息，默认为X-Requested-With,Content-Type,Content-Length
 http.cors.allow-headers: Authorization,X-Requested-With,Content-Length,Content-Type
 
-#如果启用了 HTTP 端口，那么此属性指定由 Elasticsearch 服务使用的端口
+##如果启用了 HTTP 端口，那么此属性指定由 Elasticsearch 服务使用的端口
 http.port: 9200
 
-#Elasticsearch7新增参数，写入候选主节点的设备地址，来开启服务时就可以被选为主节点,由discovery.zen.ping.unicast.hosts:参数改变而来
-discovery.seed_hosts: ["192.168.193.154:9300","192.168.193.155:9300","192.168.193.156:9300"]
+##Elasticsearch7新增参数，写入候选主节点的设备地址，来开启服务时就可以被选为主节点,由discovery.zen.ping.unicast.hosts:参数改变而来
+discovery.seed_hosts: ["20.20.150.14:9300","20.20.150.15:9300","20.20.150.16:9300"]
 
-#当有2个master候选节点时，才可以选举出一个master，防止脑裂问题，7.x版本该选项已被忽略
-discovery.zen.minimum_master_nodes: 2
+##当有2个master候选节点时，才可以选举出一个master，防止脑裂问题，7.x版本该选项被忽略
+#discovery.zen.minimum_master_nodes: 2
 
-#Elasticsearch7新增参数，写入候选主节点的设备地址，来开启服务时就可以被选为主节点
-cluster.initial_master_nodes: ["192.168.193.154:9300","192.168.193.155:9300","192.168.193.156:9300"]
+##Elasticsearch7新增参数，写入候选主节点的设备地址，来开启服务时就可以被选为主节点
+cluster.initial_master_nodes: ["tsw-es-node1"]
 
-#Elasticsearch7新增参数，设置每个节点在选中的主节点的检查之间等待的时间。默认为1秒
+##Elasticsearch7新增参数，设置每个节点在选中的主节点的检查之间等待的时间。默认为1秒
 cluster.fault_detection.leader_check.interval: 15s
 
-#Elasticsearch7新增参数，启动后30秒内，如果集群未形成，那么将会记录一条警告信息，警告信息未master not fount开始，默认为10秒
+##Elasticsearch7新增参数，启动后30秒内，如果集群未形成，那么将会记录一条警告信息，警告信息未master not fount开始，默认为10秒
 discovery.cluster_formation_warning_timeout: 30s
 
-#Elasticsearch7新增参数，节点发送请求加入集群后，在认为请求失败后，再次发送请求的等待时间，默认为60秒
+##Elasticsearch7新增参数，节点发送请求加入集群后，在认为请求失败后，再次发送请求的等待时间，默认为60秒
 cluster.join.timeout: 30s
 
-#Elasticsearch7新增参数，设置主节点等待每个集群状态完全更新后发布到所有节点的时间，默认为30秒
+##Elasticsearch7新增参数，设置主节点等待每个集群状态完全更新后发布到所有节点的时间，默认为30秒
 cluster.publish.timeout: 90s
 
-#集群内同时启动的数据任务个数，默认是2个
+##减少因为网络堵塞缓慢导致master选举超时，默认为3s
+discovery.zen.ping_timeout: 120s
+
+##ping一个节点的响应超时时间，7.x默认为30s，7.x以前为90s
+client.transport.ping_timeout: 60s
+
+##集群内同时启动的数据任务个数，默认是2个
 cluster.routing.allocation.cluster_concurrent_rebalance: 16
 
-#添加或删除节点及负载均衡时并发恢复的线程个数，默认4个
+##添加或删除节点及负载均衡时并发恢复的线程个数，默认4个
 cluster.routing.allocation.node_concurrent_recoveries: 16
 
-#初始化数据恢复时，并发恢复线程的个数，默认4个
+##初始化数据恢复时，并发恢复线程的个数，默认4个
 cluster.routing.allocation.node_initial_primaries_recoveries: 16
 
-#设置为true表示开启X-Pack来监控es节点
+##设置为true表示开启X-Pack来监控es节点
 xpack.monitoring.enabled: true
 
-#控制是否应该收集关于Elasticsearch集群的统计信息。默认是true，他跟xpack.monitoring.collection.enabled是不一样的，xpack.monitoring.collection.enabled表示禁用或者启用所有监控收集，该设置只是禁用es的数据采集，但是其他的数据（像 Kibana, Logstash, Beats或者APM服务监控数据）可以通过该集群。
-
+##控制是否应该收集关于Elasticsearch集群的统计信息。默认是true，他跟xpack.monitoring.collection.enabled是不一样的，xpack.monitoring.collection.enabled表示禁用或者启用所有监控收集，该设置只是禁用es的数据采集，但是其他的数据（像 Kibana, Logstash, Beats或者APM服务监控数据）可以通过该集群。
 xpack.monitoring.elasticsearch.collection.enabled: true
 
-#对elasticsearch开启xpack安全功能
+##只限于使用特定名称来删除索引，使用_all 或者通配符来删除索引无效
+action.destructive_requires_name: true
+
+##对elasticsearch开启xpack安全功能
 xpack.security.enabled: true
 
-#指定xpack证书类型为basic基础类型，非付费版本的xpack功能只支持basic基本认证功能，否则只能试用30天
+##指定xpack证书类型为basic基础类型，非付费版本的xpack功能只支持basic基本认证功能，否则只能试用30天
 xpack.license.self_generated.type: basic
 xpack.security.transport.ssl.enabled: true
 xpack.security.transport.ssl.verification_mode: certificate
-
-#证书路径
-xpack.security.transport.ssl.keystore.path: /data/elasticsearch/config/certs/elastic-certificates.p12
-xpack.security.transport.ssl.truststore.path: /data/elasticsearch/config/certs/elastic-certificates.p12
+##证书路径
+xpack.security.transport.ssl.keystore.path: /etc/elasticsearch/cert.d/elastic-certificates.p12
+xpack.security.transport.ssl.truststore.path: /etc/elasticsearch/cert.d/elastic-certificates.p12
