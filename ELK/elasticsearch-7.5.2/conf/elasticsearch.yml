@@ -70,7 +70,7 @@ http.port: 9200
 #Elasticsearch7新增参数，写入候选主节点的设备地址，来开启服务时就可以被选为主节点,由discovery.zen.ping.unicast.hosts:参数改变而来
 discovery.seed_hosts: ["192.168.193.154:9300","192.168.193.155:9300","192.168.193.156:9300"]
 
-#当有2个master候选节点时，才可以选举出一个master，防止脑裂问题
+#当有2个master候选节点时，才可以选举出一个master，防止脑裂问题，7.x版本该选项已被忽略
 discovery.zen.minimum_master_nodes: 2
 
 #Elasticsearch7新增参数，写入候选主节点的设备地址，来开启服务时就可以被选为主节点
